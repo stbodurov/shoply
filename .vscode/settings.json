@@ -1,0 +1,9 @@
+{
+    "workbench.colorCustomizations": {
+        "statusBar.background" : "#2b2b2b",
+        "statusBar.noFolderBackground" : "#212121",
+        "statusBar.debuggingBackground": "#263238"
+    }, 
+    "typescript.disableAutomaticTypeAcquisition": true
+      
+}
