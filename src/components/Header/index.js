@@ -1,10 +1,13 @@
 import React from 'react';
 import './styles.scss'
 import { Link } from 'react-router-dom'
+import {auth} from './../../firebase/utils'
 
-import Logo from './../../assets/logo.png'
+import Logo from './../../assets/logo.jpeg'
 
 const Header = props => {
+    const {currentUser} = props;
+
     return (
         <header className="header">
             <div className="wrap">
@@ -15,17 +18,38 @@ const Header = props => {
                 </div>
 
                 <div className="callToActions">
-                    <ul>
+
+                {currentUser && (
+                        <ul>
                         <li>
-                            <Link to="registration">
-                                Register
-                            </Link>
-                        </li>
-                    </ul>
+                                <span onClick={() => auth.signOut()}>Logout</span>
+                            </li>
+                        </ul>
+                    )}
+
+                    {!currentUser && (
+                        <ul>
+                        <li>
+                                <Link to="registration">
+                                    Register
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="login">
+                                    Login
+                                </Link>
+                            </li>
+                        </ul>
+                    )}
+                    
                 </div>
             </div>
         </header>
     )
+}
+
+Header.defaultProps = {
+
 }
 
 export default Header;
