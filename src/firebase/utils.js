@@ -15,7 +15,7 @@ export const signInWithGoogle = () => auth.signInWithPopup(GoogleProvider);
 
 export const handleUserProfile = async (userAuth, additionalData) => {
     if (!userAuth) {
-        return;
+        return;  
     }
 
     const { uid } = userAuth;
