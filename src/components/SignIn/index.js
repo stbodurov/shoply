@@ -1,95 +1,93 @@
-import React, {Component} from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { withRouter } from 'react-router-dom';
+import { signInUser, signInWithGoogle, resetAllAuthForms } from './../../redux/User/user.actions'
+ 
+
 import './styles.scss'
-import {signInWithGoogle, auth} from './../../firebase/utils'
 
 
+// import AuthWrapper from './../'
 import FormInput from './../forms/FormInput';
 import Button from './../forms/Button';
 
-const initialState = {
-    email: '',
-    password: ''
-}
+const mapState = ({user}) => ({
+  signInSuccess: user.signInSuccess
+})
 
-class SignIn extends Component {
-constructor(props) {
-    super(props);
-    this.state = {
-        ...initialState
+const SignIn = props => {
+  const {signInSuccess} = useSelector(mapState);
+  const dispatch = useDispatch();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (signInSuccess) {
+      resetForm();
+      dispatch(resetAllAuthForms());
+      props.history.push('/')
     }
-    this.handleChange = this.handleChange.bind(this)
-}
+  }, [signInSuccess])
 
-    handleChange(event) {
-        const {name, value} = event.target;
-        this.setState({
-            [name]: value
-        })
-    }
+  const resetForm = () => {
+    setEmail('');
+    setPassword('');
+  }
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    dispatch(signInUser({email, password}));
+  }
 
-    handleSubmit = async e => {
-        e.preventDefault();
-        const {email, password} = this.state;
+  const handleGoogleSignIn = () => {
+    dispatch(signInWithGoogle())
+  }
 
-        try {
-            
-            await auth.signInWithEmailAndPassword(email, password);
-            this.setState({
-                ...initialState
-            })
-        } catch (err) {
-            // console.log(err);
-        }
-    }
- 
-    render() {
-const {email, password} = this.state;
+  return (
+    <div className="signin">
+      <div className="wrap">
+        <h2>
+          Log in
+          </h2>
 
+        <div className="formWrap">
+          <form onSubmit={handleSubmit}>
 
-        return (
-            <div className="signin">
-                <div className="wrap">
-                    <h2>
-                        Log in
-                    </h2>
-    
-                    <div className="formWrap">
-                        <form onSubmit={this.handleSubmit}>
+            <FormInput
+              type="email"
+              name="email"
+              value={email}
+              placeholder="Email"
+              onChange={e => setEmail(e.target.value)}
+            />
 
-                        <FormInput
-                                type="email"
-                                name="email"
-                                value={email}
-                                placeholder="Email"
-                                onChange={this.handleChange}
-                            /> 
+            <FormInput
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Password"
+              onChange={e => setPassword(e.target.value)}
+            />
 
-                            <FormInput
-                                type="password"
-                                name="password"
-                                value={password}
-                                placeholder="Password"
-                                onChange={this.handleChange}
-                            /> 
-
-                            <Button type="submit" onSubmit={this.handleSubmit}>
-                                Sign in
-                            </Button>
-
-                            <div className="socialSignIn">
-                                <div className="row">
-                                    <Button onClick={signInWithGoogle}>
-                                        Sign in with Google
+            <Button type="submit" onSubmit={handleSubmit}>
+              Sign in
                                     </Button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
+
+            <div className="socialSignIn">
+              <div className="row">
+                <Button onClick={handleGoogleSignIn}>
+                  Sign in with Google
+                                            </Button>
+              </div>
             </div>
-        )
-    }
+          </form>
+        </div>
+      </div>
+    </div>
+  )
+
 }
 
-export default SignIn;
+
+
+export default withRouter(SignIn);
