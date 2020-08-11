@@ -15,6 +15,7 @@ All you need to start shopping is to sign up. If you want to sell, you can upgra
 - CSS
 
 ## Getting started
-### `yarn start`
+
+Open a terminal instance in the project directory and type ### `yarn start` ("npm run start" if you use npm)
 
 Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
