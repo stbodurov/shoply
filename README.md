@@ -14,10 +14,7 @@ All you need to start shopping is to sign up. If you want to sell, you can upgra
 - HTML
 - CSS
 
+## Getting started
 ### `yarn start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Open [http://localhost:3000](http://localhost:3000) to view the app in the browser.
