@@ -1,4 +1,4 @@
-# Shop.ly 
+![alt text](https://github.com/stanislav623/shoply/blob/master/src/assets/logo.jpeg)
 
 Shop.ly is a community driven marketplace in which anyone can become a merchant. 
 All you need to start shopping is to sign up. If you want to sell, you can upgrade your account at any time.
