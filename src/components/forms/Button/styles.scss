@@ -7,9 +7,19 @@
     text-transform: uppercase;
     color: white;
     background: black;
-    padding: 1rem 0;
+    padding: 1rem 10px;
     margin: 0 auto;
     border: 0;
     outline: none;
     cursor: pointer;
+
+
+    &:hover {
+        background: rgb(175, 12, 88);
+    }
+  }
+
+  .addBtn {
+    color: white;
+background:red;
 }
