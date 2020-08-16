@@ -73,7 +73,7 @@ export function* signUpUser({ payload: {
 } }) {
 
   if (password !== confirmPassword) {
-    const err = ['Password Don\'t match'];
+    const err = ['Passwords don\'t match! Try again.'];
     yield put(
       userError(err)
     );
@@ -82,7 +82,8 @@ export function* signUpUser({ payload: {
 
   try {
     const { user } = yield auth.createUserWithEmailAndPassword(email, password);
-    const additionalData = { displayName };
+    const cart = {};
+    const additionalData = { displayName, cart };
     yield getSnapshotFromUserAuth(user, additionalData);
 
   } catch (err) {

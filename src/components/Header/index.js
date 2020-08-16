@@ -1,8 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOutUserStart } from './../../redux/User/user.actions';
 import './styles.scss'
 import { Link } from 'react-router-dom'
-import { auth } from './../../firebase/utils'
 import { checkUserIsAdmin } from '../../Utils'
 
 import Logo from './../../assets/logo.jpeg'
@@ -14,7 +14,13 @@ const mapState = ({ user }) => ({
 })
 
 const Header = props => {
+    const dispatch = useDispatch();
     const { currentUser } = useSelector(mapState);
+  
+    const signOut = () => {
+      dispatch(signOutUserStart());
+    };
+  
     const isAdmin = checkUserIsAdmin(currentUser);
 
     const adminLinkStyling = {
@@ -24,44 +30,38 @@ const Header = props => {
     return (
         <header className="header">
             <div className="wrap">
-                {isAdmin ?
-                    (<div className="proLogo">
-                        <Link to="/">
-                            <img src={ProLogo} alt="shoply logo" />
-                        </Link>
-                    </div>
-                    ) : (
-                        <div className="logo">
+                <div className="logo">
                             <Link to="/">
                                 <img src={Logo} alt="shoply logo" />
                             </Link>
-                        </div>)}
+                        </div>
+                    
 
                 <div className="callToActions">
 
 
-
                     {currentUser && (
                         <ul>
+                            <li>
+                                <Link to="/products">
+                                    All Products
+                                </Link>
+                            </li>
                             {isAdmin && (
                                 <li>
-                                    <Link to="admin" style={adminLinkStyling}>
-                                        Merchant
+                                    <Link to="/admin" style={adminLinkStyling}>
+                                        My Account
                                 </Link>
                                 </li>
                             )}
                             <li>
-                                <Link to="dashboard">
-                                    My Account
-                                </Link>
-                            </li>
-                            <li>
                                 <Link to="cart">
-                                    <img className="cart" src={CartLogo} alt="Shopping cart"/>
+                                    <img className="cart" src={CartLogo} alt="Shopping cart" />
                                 </Link>
                             </li>
                             <li>
-                                <span onClick={() => auth.signOut()}><a>Logout</a></span>
+                            {/* eslint-disable-next-line */}
+                                <span onClick={() => signOut()}><a>Logout</a></span>
                             </li>
                         </ul>
                     )}

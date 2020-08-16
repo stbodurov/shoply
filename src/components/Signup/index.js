@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { signUpUserStart } from './../../redux/User/user.actions';
 import './styles.scss';
+import { Alert } from 'react-bootstrap';
 
 import AuthWrapper from './../AuthWrapper';
 import FormInput from './../forms/FormInput';
@@ -29,7 +30,7 @@ const Signup = props => {
       history.push('/');
     }
 
-  }, [currentUser]);
+  }, [currentUser, history]);
 
   useEffect(() => {
     if (Array.isArray(userErr) && userErr.length > 0) {
@@ -66,11 +67,11 @@ const Signup = props => {
 
         {errors.length > 0 && (
           <ul>
-            {errors.map((err, index) => {
+            {errors.map((e, index) => {
               return (
-                <li key={index}>
-                  {err}
-                </li>
+                <Alert key={index} variant="danger">
+                 {e}
+                </Alert>
               );
             })}
           </ul>

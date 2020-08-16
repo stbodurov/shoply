@@ -4,6 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { resetPasswordStart, resetUserState } from './../../redux/User/user.actions';
 import './styles.scss';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Alert } from 'react-bootstrap';
+
 import AuthWrapper from './../AuthWrapper';
 import FormInput from './../forms/FormInput';
 import Button from './../forms/Button';
@@ -26,7 +29,7 @@ const EmailPassword = props => {
       history.push('/login');
     }
 
-  }, [resetPasswordSuccess]);
+  }, [resetPasswordSuccess, dispatch, history]);
 
   useEffect(() => {
     if (Array.isArray(userErr) && userErr.length > 0) {
@@ -52,10 +55,10 @@ const EmailPassword = props => {
           <ul>
             {errors.map((e, index) => {
               return (
-                <li key={index}>
-                  {e}
-                </li>
-              );
+                <Alert key={index} variant="danger">
+                 {e}
+                </Alert>
+              )
             })}
           </ul>
         )}

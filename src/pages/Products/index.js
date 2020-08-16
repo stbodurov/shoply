@@ -6,11 +6,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
+
 const mapState = ({ productsData }) => ({
     products: productsData.products
 });
 
-export default function Homepage() {
+export default function Products() {
     const { products } = useSelector(mapState);
     const dispatch = useDispatch();
 
@@ -22,8 +23,8 @@ export default function Homepage() {
     }, [dispatch]);
 
     return (
-        <section className="homepage">
-            <h1>Featured Products</h1>
+        <section className="products">
+            <h1>All Products</h1>
             {Array.from((products).filter(x => x.addedToCart !== true)).length > 0 && products.filter(x => x.addedToCart !== true).slice(0, 4).map((product, index) => {
                 const {
                     productCategory,
@@ -53,10 +54,6 @@ export default function Homepage() {
             {Array.from((products).filter(x => x.addedToCart !== true)).length === 0 && (
                 <h2 style={{ marginLeft: '15rem' }} >There are no products. You can add one from the merchant tab.</h2>
                 )}
-
-            <Link to="products" className="seeAll">
-                See all products
-            </Link>
 
         </section>
     )

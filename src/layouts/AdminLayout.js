@@ -13,7 +13,7 @@ const AdminLayout = props => {
   const signOut = () => {
     dispatch(signOutUserStart());
   };
-
+console.log(props);
   return (
     <div className="adminLayout">
       <Header {...props} />
@@ -22,7 +22,7 @@ const AdminLayout = props => {
           <VerticalNav>
             <ul>
               <li>
-                <Link to="/admin">
+                <Link to="/">
                   Home
                 </Link>
               </li>

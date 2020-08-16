@@ -4,8 +4,7 @@
   width: 30%;">
 
 <p><b>Shop.ly</b> is a community driven marketplace made for both buyers and merchants. <br /> 
-All you need to start shopping is to sign up. 
-If you want to sell, you can upgrade your account at any time.</p>
+All you need to start shopping and selling is to sign up.</p>
 
 ## Technological Stack
 
@@ -29,8 +28,7 @@ Additionally, a production build can be compiled by using `yarn build`.
 ## Supported functionalities
 
 - <b>Guest</b> users are capable of viewing the most recently added products. An account is necessary for further interaction.
-- Logged in <b>standard</b> users can view all products and add them to their shopping bag. They can become merchants by upgrading their accounts to the <i>Pro</i> tier.
-- <b>Pro</b> users can sell their own products while also being able to buy other users' products.
+- Logged in users can view all products and add them to their shopping bag. They can sell their own products by going to the merchant tab.
 
 ## Routes
 
@@ -40,11 +38,6 @@ Additionally, a production build can be compiled by using `yarn build`.
 - /register
 
 - <b>Accessible by standard users:</b>
-- /home
-- /dashboard
-- /products/:id
-
-- <b>Accessible by <i>Pro</i> users:</b>
 - /home
 - /dashboard
 - /products/:id
