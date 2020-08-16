@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductStart, fetchProductsStart, deleteProductStart } from './../../redux/Products/products.actions';
-import Modal from './../../components/Modal';
+import {getCurrentUser} from './../../firebase/utils';
+
+import AddModal from './../../components/Modal';
 import FormInput from './../../components/forms/FormInput';
 import FormSelect from './../../components/forms/FormSelect';
 import Button from './../../components/forms/Button';
 import './styles.scss';
+
 
 const mapState = ({ productsData }) => ({
   products: productsData.products
@@ -15,17 +18,19 @@ const Admin = props => {
   const { products } = useSelector(mapState);
   const dispatch = useDispatch();
   const [hideModal, setHideModal] = useState(true);
-  const [productCategory, setProductCategory] = useState('mens');
+  const [productCategory, setProductCategory] = useState('Vehicles');
   const [productName, setProductName] = useState('');
   const [productThumbnail, setProductThumbnail] = useState('');
   const [productPrice, setProductPrice] = useState(0);
+  const currentUser = getCurrentUser();
+  console.log(currentUser);
 
   useEffect(() => {
     dispatch(
       fetchProductsStart()
     );
 
-  }, []);
+  }, [dispatch]);
 
   const toggleModal = () => setHideModal(!hideModal);
 
@@ -36,7 +41,7 @@ const Admin = props => {
 
   const resetForm = () => {
     setHideModal(true);
-    setProductCategory('mens');
+    setProductCategory('Vehicles');
     setProductName('');
     setProductThumbnail('');
     setProductPrice(0);
@@ -70,7 +75,7 @@ const Admin = props => {
         </ul>
       </div>
 
-      <Modal {...configModal}>
+      <AddModal {...configModal}>
         <div className="addNewProductForm">
           <form onSubmit={handleSubmit}>
 
@@ -81,12 +86,36 @@ const Admin = props => {
             <FormSelect
               label="Category"
               options={[{
-                value: "mens",
-                name: "Mens"
+                value: "Vehicles",
+                name: "Vehicles"
               }, {
-                value: "womens",
-                name: "Womens"
-              }]}
+                value: "Electronics",
+                name: "Electronics"
+              }, {
+                value: "Sport Equipment",
+                name: "Sport Equipment"
+              }, {
+                value: "Clothing",
+                name: "Clothing"
+              }, {
+                value: "Books",
+                name: "Books"
+              }, {
+                value: "Shoes",
+                name: "Shoes"
+              }, {
+                value: "Pets",
+                name: "Pets"
+              }, {
+                value: "Furniture",
+                name: "Furniture"
+              }, {
+                value: "Foods",
+                name: "Foods"
+              }, {
+                value: "Gardening",
+                name: "Gardening"
+              },]}
               handleChange={e => setProductCategory(e.target.value)}
             />
 
@@ -98,8 +127,9 @@ const Admin = props => {
             />
 
             <FormInput
-              label="Main image URL"
-              type="url"
+            className="productImg"
+              label="Image"
+              type="text"
               value={productThumbnail}
               handleChange={e => setProductThumbnail(e.target.value)}
             />
@@ -120,7 +150,7 @@ const Admin = props => {
 
           </form>
         </div>
-      </Modal>
+      </AddModal>
 
       <div className="manageProducts">
 
@@ -137,7 +167,7 @@ const Admin = props => {
               <td>
                 <table className="results" border="0" cellPadding="10" cellSpacing="0">
                   <tbody>
-                    {products.map((product, index) => {
+                    {products.filter((product) => product.adminUserUID === currentUser.id).map((product, index) => {
                       const {
                         productName,
                         productThumbnail,
@@ -148,13 +178,13 @@ const Admin = props => {
                       return (
                         <tr key={index}>
                           <td>
-                            <img className="thumb" src={productThumbnail} />
+                            <img className="thumb" src={productThumbnail} alt="product Thumbnail" />
                           </td>
                           <td>
                             {productName}
                           </td>
                           <td>
-                            £{productPrice}
+                            {productPrice} BGN
                           </td>
                           <td>
                             <Button onClick={() => dispatch(deleteProductStart(documentID))}>

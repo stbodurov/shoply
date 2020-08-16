@@ -3,10 +3,10 @@ import 'firebase/firestore';
 import 'firebase/auth';
 import { firebaseConfig } from './config';
 
-firebase.initializeApp(firebaseConfig);
+var app = firebase.initializeApp(firebaseConfig);
 
 export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+export const firestore = firebase.firestore(app);
 
 export const GoogleProvider = new firebase.auth.GoogleAuthProvider();
 GoogleProvider.setCustomParameters({ prompt: 'select_account' });
@@ -21,8 +21,8 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   if (!snapshot.exists) {
     const { displayName, email } = userAuth;
     const timestamp = new Date();
-    const userRoles = ['admin'];
-
+    const userRoles = ['standard', 'admin'];
+    const cart = [];
     try {
       await userRef.set({
         displayName,
@@ -46,4 +46,23 @@ export const getCurrentUser = () => {
       resolve(userAuth);
     }, reject);
   })
+}
+
+export const uploadImage = () => {
+  const ref = firebase.storage().ref();
+  const file = document.querySelector('.productImg').files[0];
+  const name = file.name;
+  
+  const metadata = {
+    contentType:file.type
+  }
+
+  const task = ref.child(name).put(file, metadata);
+
+  task
+  .then(snapshot => snapshot.ref.getDownloadURL())
+  .then(url => {
+    console.log(url);
+    return url;
+  });
 }

@@ -1,4 +1,4 @@
-.homepage {
+.products {
     margin: auto;
     width: 80%;
     padding: 10px;
@@ -11,7 +11,7 @@
     }
 
     h1 {
-        width: 31%;
+        width: 26%;
         margin: 0 auto;
         margin-right: 32%;
         margin-top: 3rem;
@@ -37,7 +37,6 @@
 
     .seeAll {
         margin-top: 5rem;
-        
         width: 80%;
         margin-left: 12.5%;
     }
@@ -78,7 +77,7 @@
       }
     }
   
-button.btn.btn-secondary {
+    .btn, #root > div > div > section.homepage > div > div > button.btn.btn-secondary {
         
         background: rgb(179, 2, 2);
 

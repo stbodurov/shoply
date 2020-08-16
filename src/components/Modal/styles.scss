@@ -6,13 +6,15 @@
   background-color: rgba(0,0,0,.3);
 }
 
-.modal {
+.addModal {
+  .show { opacity: 1; }
   position: absolute;
   top: 50%; left: 50%;
   -webkit-transform: translate(-50%, -50%);
   -moz-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   background-color: white;
+  border-radius: 25px;
   width: 95%;
   padding: 2rem;
   max-width: 60rem;

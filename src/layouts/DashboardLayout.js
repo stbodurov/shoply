@@ -22,7 +22,7 @@ const DashBoardLayout = props => {
           <VerticalNav>
             <ul>
               <li>
-                <Link to="/dashboard">
+                <Link to="/">
                   Home
                 </Link>
               </li>

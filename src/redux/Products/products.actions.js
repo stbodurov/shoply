@@ -14,6 +14,11 @@ export const setProducts = products => ({
   payload: products
 });
 
+export const addProductToCartStart = productID => ({
+  type: productsTypes.ADD_PRODUCT_TO_CART_START,
+  payload: productID
+});
+
 export const deleteProductStart = productID => ({
   type: productsTypes.DELETE_PRODUCT_START,
   payload: productID

@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './styles.scss';
 
-const Modal = ({ hideModal, toggleModal, children }) => {
+const AddModal = ({ hideModal, toggleModal, children }) => {
   if (hideModal) return null;
 
   return (
     <>
       <div className="modalOverlay" onClick={() => toggleModal()} />
-      <div className="modal">
+      <div className="addModal">
         {children}
       </div>
     </>
   );
 }
 
-export default Modal;
+export default AddModal;

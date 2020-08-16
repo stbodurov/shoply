@@ -15,7 +15,7 @@ const history = useHistory();
         if (!checkUserIsAdmin(currentUser)) {
             history.push('/login');
         }
-    }, [currentUser]);
+    }, [currentUser, history]);
 
     return currentUser;
 }

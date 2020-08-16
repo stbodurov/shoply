@@ -1,0 +1,53 @@
+.product {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+    margin-right: 12.5%;
+
+    .productCard {
+        display: inline-block;
+
+        margin-left: 8rem;
+    }
+
+    h1 {
+        width: 26%;
+        margin: 0 auto;
+        margin-right: 32%;
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+    
+    .productImage {
+        width: 40rem;
+        height: 60rem;
+         
+        
+        
+    }
+
+    ul,li
+{ 
+overflow-x:hidden;
+width: 100%;
+} 
+
+    .card-title {
+        margin-bottom: 10px;
+    }
+
+    .card-subtitle {
+        margin-bottom: 10px;
+    }
+
+    Button {
+        margin-top: 2rem;
+    }
+
+    .seeAll {
+        margin-top: 5rem;
+        width: 80%;
+        margin-left: 12.5%;
+    }
+}
+

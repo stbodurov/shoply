@@ -15,6 +15,9 @@ import DashboardLayout from './layouts/DashboardLayout';
 
 // pages
 import Homepage from './pages/Homepage';
+import Product from './pages/Product';
+import Products from './pages/Products';
+import Cart from './pages/Cart';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
 import Recovery from './pages/Recovery';
@@ -27,18 +30,33 @@ const App = props => {
 
   useEffect(() => {
     dispatch(checkUserSession());
-
-  }, []);
+  });
 
   return (
+
     <div className="App">
-      
-	  
+
       <Switch>
         <Route exact path="/" render={() => (
           <HomepageLayout>
             <Homepage />
           </HomepageLayout>
+        )}
+        />
+        <Route exact path="/products" render={() => (
+          <WithAuth>
+          <HomepageLayout>
+            <Products />
+          </HomepageLayout>
+          </WithAuth>
+        )}
+        />
+        <Route exact path="/products/:id" render={() => (
+          <WithAuth>
+          <HomepageLayout>
+            <Product />
+          </HomepageLayout>
+          </WithAuth>
         )}
         />
         <Route path="/registration" render={() => (
@@ -61,6 +79,13 @@ const App = props => {
           <WithAuth>
             <DashboardLayout>
               <Dashboard />
+            </DashboardLayout>
+          </WithAuth>
+        )} />
+        <Route path="/cart" render={() => (
+          <WithAuth>
+            <DashboardLayout>
+              <Cart />
             </DashboardLayout>
           </WithAuth>
         )} />
