@@ -32,12 +32,12 @@ Additionally, a production build can be compiled by using `yarn build`.
 
 ## Routes
 
-- <b>Accessible by guest users:</b>
+### Accessible by guest users:
 - /home
 - /login
 - /register
 
-- <b>Accessible by standard users:</b>
+### Accessible by standard users:
 - /home
 - /dashboard
 - /products/:id
