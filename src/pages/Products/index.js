@@ -25,7 +25,7 @@ export default function Products() {
     return (
         <section className="products">
             <h1>All Products</h1>
-            {Array.from((products).filter(x => x.addedToCart !== true)).length > 0 && products.filter(x => x.addedToCart !== true).slice(0, 4).map((product, index) => {
+            {Array.from((products).filter(x => x.addedToCart !== true)).length > 0 && products.filter(x => x.addedToCart !== true).map((product, index) => {
                 const {
                     productCategory,
                     productName,
