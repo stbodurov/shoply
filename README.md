@@ -1,7 +1,4 @@
-<img src="https://github.com/stanislav623/shoply/blob/master/public/shoply_demo.png" alt="shop.ly demo" style="display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;">
+<img src="https://github.com/stanislav623/shoply/blob/master/public/shoply_demo.png" alt="shop.ly demo" />
 
 <p><b>Shop.ly</b> is a community driven marketplace made for both buyers and merchants. <br /> 
 All you need to start shopping and selling is to sign up.</p>
@@ -11,11 +8,10 @@ All you need to start shopping and selling is to sign up.</p>
 - React
 - Redux + Redux Saga
 - Firebase
-- GraphQL
  <br /> <br />
-- Javascript 
-- HTML 
-- CSS 
+- JavaScript 
+- HTML5
+- Sass
 
 ## Getting started
 
