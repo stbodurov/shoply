@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { resetPasswordStart, resetUserState } from './../../redux/User/user.actions';
 import './styles.scss';
 
@@ -18,7 +18,7 @@ const mapState = ({ user }) => ({
 
 const EmailPassword = props => {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { resetPasswordSuccess, userErr } = useSelector(mapState);
   const [email, setEmail] = useState('');
   const [errors, setErrors] = useState([]);
@@ -26,10 +26,10 @@ const EmailPassword = props => {
   useEffect(() => {
     if (resetPasswordSuccess) {
       dispatch(resetUserState());
-      history.push('/login');
+      navigate('/login');
     }
 
-  }, [resetPasswordSuccess, dispatch, history]);
+  }, [resetPasswordSuccess, dispatch, navigate]);
 
   useEffect(() => {
     if (Array.isArray(userErr) && userErr.length > 0) {

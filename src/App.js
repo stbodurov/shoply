@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Switch, Route } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+  Route,
+  Link,
+} from "react-router-dom";
 import { checkUserSession } from './redux/User/user.actions';
 
 // hoc
@@ -25,6 +31,72 @@ import Dashboard from './pages/Dashboard';
 import Admin from './pages/Admin';
 import './default.scss';
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    [
+      <Route path="/" element={(
+        <HomepageLayout>
+          <Homepage />
+        </HomepageLayout>
+      )}
+      />,
+      <Route exact path="/products" element={(
+        <WithAuth>
+          <HomepageLayout>
+            <Products />
+          </HomepageLayout>
+        </WithAuth>
+      )}
+      />,
+      <Route exact path="/products/:id" element={(
+        <WithAuth>
+          <HomepageLayout>
+            <Product />
+          </HomepageLayout>
+        </WithAuth>
+      )}
+      />,
+      <Route path="/registration" element={(
+        <MainLayout>
+          <Registration />
+        </MainLayout>
+      )} />,
+      <Route path="/login"
+        element={(
+          <MainLayout>
+            <Login />
+          </MainLayout>
+        )} />,
+      <Route path="/recovery" element={(
+        <MainLayout>
+          <Recovery />
+        </MainLayout>
+      )} />,
+      <Route path="/dashboard" element={(
+        <WithAuth>
+          <DashboardLayout>
+            <Dashboard />
+          </DashboardLayout>
+        </WithAuth>
+      )} />,
+      <Route path="/cart" element={(
+        <WithAuth>
+          <DashboardLayout>
+            <Cart />
+          </DashboardLayout>
+        </WithAuth>
+      )} />,
+      <Route path="/admin" element={(
+        <WithAdminAuth>
+          <AdminLayout>
+            <Admin />
+          </AdminLayout>
+        </WithAdminAuth>
+      )} />
+    ]
+
+  ))
+
 const App = props => {
   const dispatch = useDispatch();
 
@@ -33,70 +105,8 @@ const App = props => {
   });
 
   return (
-
     <div className="App">
-
-      <Switch>
-        <Route exact path="/" render={() => (
-          <HomepageLayout>
-            <Homepage />
-          </HomepageLayout>
-        )}
-        />
-        <Route exact path="/products" render={() => (
-          <WithAuth>
-          <HomepageLayout>
-            <Products />
-          </HomepageLayout>
-          </WithAuth>
-        )}
-        />
-        <Route exact path="/products/:id" render={() => (
-          <WithAuth>
-          <HomepageLayout>
-            <Product />
-          </HomepageLayout>
-          </WithAuth>
-        )}
-        />
-        <Route path="/registration" render={() => (
-          <MainLayout>
-            <Registration />
-          </MainLayout>
-        )} />
-        <Route path="/login"
-          render={() => (
-            <MainLayout>
-              <Login />
-            </MainLayout>
-          )} />
-        <Route path="/recovery" render={() => (
-          <MainLayout>
-            <Recovery />
-          </MainLayout>
-        )} />
-        <Route path="/dashboard" render={() => (
-          <WithAuth>
-            <DashboardLayout>
-              <Dashboard />
-            </DashboardLayout>
-          </WithAuth>
-        )} />
-        <Route path="/cart" render={() => (
-          <WithAuth>
-            <DashboardLayout>
-              <Cart />
-            </DashboardLayout>
-          </WithAuth>
-        )} />
-        <Route path="/admin" render={() => (
-          <WithAdminAuth>
-            <AdminLayout>
-              <Admin />
-            </AdminLayout>
-          </WithAdminAuth>
-        )} />
-      </Switch>
+      <RouterProvider router={router} />
     </div>
   );
 }

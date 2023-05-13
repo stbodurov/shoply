@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { signOutUserStart } from './../../redux/User/user.actions';
 import './styles.scss'
 import { Link } from 'react-router-dom'
-import { checkUserIsAdmin } from '../../Utils'
+import { checkUserIsAdmin } from '../../utils'
 
 import Logo from './../../assets/logo.jpeg'
 import ProLogo from './../../assets/logo-pro.jpeg'
@@ -69,12 +69,12 @@ const Header = props => {
                     {!currentUser && (
                         <ul>
                             <li>
-                                <Link to="registration">
+                                <Link to="/registration">
                                     Register
                                 </Link>
                             </li>
                             <li>
-                                <Link to="login">
+                                <Link to="/login">
                                     Login
                                 </Link>
                             </li>
